@@ -24,6 +24,12 @@ import "layer_platform"
 
 
 FocusScope {
+
+    onFocusChanged: {
+        console.log("focus is ", focus)
+        gamepreview.visible = focus
+    }
+
     Keys.onPressed: {
         if (event.isAutoRepeat)
             return;
@@ -46,6 +52,7 @@ FocusScope {
         if (api.keys.isFilters(event)) {
             event.accepted = true;
             filter.focus = true;
+            gamepreview.visible = false
             return;
         }
     }
@@ -109,7 +116,10 @@ FocusScope {
     FilterLayer {
         id: filter
         anchors.fill: parent
-        onCloseRequested: gamegrid.focus = true
+        onCloseRequested: {
+            gamegrid.focus = true
+            gamepreview.visible = true
+        }
     }
     SortFilterProxyModel {
         id: filteredGames

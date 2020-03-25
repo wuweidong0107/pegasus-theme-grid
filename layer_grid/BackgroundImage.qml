@@ -16,7 +16,7 @@
 
 
 import QtQuick 2.0
-import QtGraphicalEffects 1.0
+//import QtGraphicalEffects 1.0
 
 Item {
     property var game
@@ -78,7 +78,7 @@ Item {
         asynchronous: true
         smooth: false
     }
-
+/*
     LinearGradient {
         z: parent.z + 1
         width: parent.width * 0.75
@@ -94,4 +94,5 @@ Item {
             GradientStop { position: 0.5; color: "#cc000000" }
         }
     }
+*/
 }

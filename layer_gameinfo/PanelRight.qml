@@ -26,7 +26,9 @@ Item {
         videoPreview.state = "";
         videoPreview.stop();
         videoPreview.playlist.clear();
-        videoDelay.restart();
+        if (videoBox.visible == true) {
+            videoDelay.restart();
+        }
     }
 
     // a small delay to avoid loading videos during scrolling
@@ -34,7 +36,7 @@ Item {
         id: videoDelay
         interval: 300
         onTriggered: {
-            if (game && game.assets.videos.length > 0) {
+            if (game && game.assets.videos.length > 0 && videoBox.visible == true) {
                 for (var i = 0; i < game.assets.videos.length; i++)
                     videoPreview.playlist.addItem(game.assets.videos[i]);
 
@@ -149,7 +151,7 @@ Item {
     Rectangle {
         id: videoBox
         color: "#000"
-        border { color: "#444"; width: 1 }
+        //border { color: "#444"; width: 1 }
 
         anchors.top: summary.bottom
         anchors.bottom: parent.bottom
@@ -158,6 +160,15 @@ Item {
         radius: vpx(4)
 
         visible: (game && (game.assets.videos.length || game.assets.screenshots.length)) || false
+
+        onVisibleChanged: {
+            if (visible == true) {
+                videoDelay.restart();
+            } else {
+                videoPreview.state = "";
+                videoPreview.stop();
+            }
+        }
 
         Image {
             visible: !videoPreview.visible || videoPreview.opacity < 0.99

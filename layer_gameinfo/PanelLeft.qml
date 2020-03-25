@@ -16,7 +16,7 @@
 
 
 import QtQuick 2.6
-import QtGraphicalEffects 1.0
+//import QtGraphicalEffects 1.0
 import "qrc:/qmlutils" as PegasusUtils
 
 
@@ -66,6 +66,7 @@ Item {
         readonly property int labelSpacing: labelFontSize / 2
         readonly property int labelFontSize: vpx(17)
 
+/*
         Row {
             width: parent.width
             spacing: playtimes.labelSpacing
@@ -108,7 +109,7 @@ Item {
                 }
             }
         }
-
+*/
         Row {
             width: parent.width
             spacing: playtimes.labelSpacing
@@ -189,12 +190,13 @@ Item {
 
                 visible: false
             }
-
+/*
             ColorOverlay {
                 anchors.fill: favHeart
                 source: favHeart
                 color: parent.focus ? "#eee" : "#666"
             }
+*/
         }
         GamePanelButton {
             id: launchBtn
